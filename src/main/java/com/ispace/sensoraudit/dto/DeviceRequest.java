@@ -12,7 +12,7 @@ import java.time.Instant;
 @Builder
 public class DeviceRequest {
 
-    @NotBlank(message = "Please enter deviceID")
+    @NotBlank(message = "Please enter deviceId")
     @JsonProperty("DeviceId")
     private String deviceId;
 
@@ -20,16 +20,19 @@ public class DeviceRequest {
     @JsonProperty("RecordType")
     private String recordType;
 
+    @NotNull(message = "Please enter EventDateTime")
     @JsonProperty("EventDateTime")
     private Instant eventDateTime;
 
+    @NotNull(message = "Please enter FieldA")
     @JsonProperty("FieldA")
     private Integer fieldA;
 
+    @NotBlank(message = "Please enter FieldB")
     @JsonProperty("FieldB")
     private String fieldB;
 
-    @NotNull(message = "Field")
+    @NotNull(message = "Please enter FieldC")
     @JsonProperty("FieldC")
     private Double fieldC;
 

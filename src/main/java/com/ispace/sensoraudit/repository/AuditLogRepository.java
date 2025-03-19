@@ -1,4 +1,4 @@
-package com.ispace.sensoraudit.dao;
+package com.ispace.sensoraudit.repository;
 
 import com.ispace.sensoraudit.model.AuditLog;
 import org.springframework.data.mongodb.repository.MongoRepository;

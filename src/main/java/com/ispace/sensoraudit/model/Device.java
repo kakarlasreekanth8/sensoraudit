@@ -1,13 +1,12 @@
 package com.ispace.sensoraudit.model;
 
-import com.google.gson.annotations.JsonAdapter;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
@@ -37,6 +36,18 @@ public class Device {
 
     @NotNull(message = "FieldC is mandatory")
     private Double fieldC;
+
+    @CreatedDate
+    private Instant createdDate;
+
+    @LastModifiedDate
+    private Instant lastModifiedDate;
+
+    @CreatedBy
+    private String createdBy = "demo user";
+
+    @LastModifiedBy
+    private String lastModifiedBy = "demo user";
 
 
 }

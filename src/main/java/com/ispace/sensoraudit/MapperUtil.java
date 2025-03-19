@@ -19,7 +19,9 @@ public class MapperUtil {
     };
 
     public static DeviceResponse deviceResponseFrom(Device saveResponse) {
+
         DeviceResponse deviceResponse = new DeviceResponse();
+
         BeanUtils.copyProperties(saveResponse, deviceResponse);
         return deviceResponse;
     }

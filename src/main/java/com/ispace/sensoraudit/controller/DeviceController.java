@@ -1,5 +1,6 @@
 package com.ispace.sensoraudit.controller;
 
+import com.ispace.sensoraudit.constants.ApiConstants;
 import com.ispace.sensoraudit.dto.DeviceRequest;
 import com.ispace.sensoraudit.dto.DeviceResponse;
 import com.ispace.sensoraudit.service.DeviceService;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(ApiConstants.DEVICE_BASE_URL)
 public class DeviceController {
     private final DeviceService deviceService;
 
@@ -19,29 +20,28 @@ public class DeviceController {
         this.deviceService = deviceService;
     }
 
-    @PostMapping("/nocontent")
+    @PostMapping(ApiConstants.POST_NOCONTENT)
     public ResponseEntity<Void> noContent(@Valid @RequestBody DeviceRequest deviceRequest) {
 
         deviceService.saveDevice(deviceRequest);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/echo")
-    public ResponseEntity<?> echo(@RequestBody DeviceRequest deviceRequest) {
-        deviceService.saveDevice(deviceRequest);
-        return ResponseEntity.ok(deviceRequest);
+    @PostMapping(ApiConstants.POST_ECHO)
+    public ResponseEntity<DeviceResponse> echo( @Valid @RequestBody DeviceRequest deviceRequest) {
+        DeviceResponse deviceResponse = deviceService.saveDevice(deviceRequest);
+        return ResponseEntity.ok(deviceResponse);
     }
 
-    @PostMapping("/device")
-    public ResponseEntity<String> saveDevice(@RequestBody DeviceRequest device) {
+    @PostMapping(ApiConstants.SAVE_DEVICE_DETAILS)
+    public ResponseEntity<String> saveDevice(@Valid @RequestBody DeviceRequest device) {
         DeviceResponse deviceResponse = deviceService.saveDevice(device);
         return ResponseEntity.status(HttpStatus.CREATED).body(deviceResponse.getDeviceId());
     }
-   @GetMapping("/devicesList")
+   @GetMapping(ApiConstants.GET_DEVICES_LIST)
     public ResponseEntity<List<DeviceResponse>> listOfRequests() {
         List<DeviceResponse> devicesList = deviceService.getDevicesList();
         return ResponseEntity.status(HttpStatus.OK).body(devicesList);
     }
-
 
 }

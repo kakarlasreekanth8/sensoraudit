@@ -1,6 +1,7 @@
 package com.ispace.sensoraudit.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;

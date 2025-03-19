@@ -4,14 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ispace.sensoraudit.MapperUtil;
 import com.ispace.sensoraudit.adaptor.InstantTypeAdapter;
-import com.ispace.sensoraudit.dao.AuditLogRepository;
-import com.ispace.sensoraudit.dao.DeviceRepository;
+import com.ispace.sensoraudit.repository.AuditLogRepository;
+import com.ispace.sensoraudit.repository.DeviceRepository;
 import com.ispace.sensoraudit.dto.DeviceRequest;
 import com.ispace.sensoraudit.dto.DeviceResponse;
 import com.ispace.sensoraudit.model.AuditLog;
 import com.ispace.sensoraudit.model.Device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
@@ -27,6 +30,7 @@ public class DeviceServiceImpl implements DeviceService {
     AuditLogRepository auditLogRepository;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public DeviceResponse saveDevice(DeviceRequest deviceRequest) {
 
         Device device = MapperUtil.deviceFrom(deviceRequest);
