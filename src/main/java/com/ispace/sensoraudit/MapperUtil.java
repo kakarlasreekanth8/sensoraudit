@@ -5,7 +5,6 @@ import com.ispace.sensoraudit.dto.DeviceResponse;
 import com.ispace.sensoraudit.model.Device;
 import org.springframework.beans.BeanUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
