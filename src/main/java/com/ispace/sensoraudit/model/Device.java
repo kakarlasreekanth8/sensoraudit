@@ -44,10 +44,10 @@ public class Device {
     private Instant lastModifiedDate;
 
     @CreatedBy
-    private String createdBy = "demo user";
+    private String createdBy ;
 
     @LastModifiedBy
-    private String lastModifiedBy = "demo user";
+    private String lastModifiedBy ;
 
 
 }
